@@ -28,14 +28,14 @@
 ### Association
 
 - belongs_to :user
-- has_many :purchase
+- has_one :purchase
 
 ## purchase table
 
 | Column           | Type       | Options           |
 |-------------     |------------|-------------------|
 | credit-number    | string     | null: false       |
-| expiration-date | string     | null: false       |
+| expiration-date  | string     | null: false       |
 | security-code    | string     | null: false       |
 | postal-code      | string     | null: false       |
 | prefectures      | text       | null: false       |
