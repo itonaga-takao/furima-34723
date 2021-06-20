@@ -1,24 +1,52 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| nickname           | text                | null: false             |
+| email              | string              | null: false             |
+| password           | string              | null: false             |
+| real-name          | text                | null: false             |
+| kana-name          | text                | null: false             |
+| birthday           | string              | null: false             |
 
-* Ruby version
+### Association
 
-* System dependencies
+* has_many :items
+* has_many :purchase
 
-* Configuration
+## items table
 
-* Database creation
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| items                               | string     | null: false       |
+| category                            | text       | null: false       |
+| price                               | string     | null: false       |
+| user                                | references | foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_many :purchase
 
-* Services (job queues, cache servers, search engines, etc.)
+## purchase table
 
-* Deployment instructions
+| Column           | Type       | Options           |
+|-------------     |------------|-------------------|
+| credit-number    | string     | null: false       |
+| expiration-date | string     | null: false       |
+| security-code    | string     | null: false       |
+| postal-code      | string     | null: false       |
+| prefectures      | text       | null: false       |
+| municipality     | text       | null: false       |
+| address          | text       | null: false       |
+| building         | text       | null: false       |
+| phone-number     | text       | null: false       |
+| items            | references | foreign_key: true |
+| user             | references | foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :items
+- belongs_to :user
