@@ -1,52 +1,24 @@
-# DB 設計
+# README
 
-## users table
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-| Column             | Type                | Options                 |
-|--------------------|---------------------|-------------------------|
-| nickname           | text                | null: false             |
-| email              | string              | null: false             |
-| password           | string              | null: false             |
-| real-name          | text                | null: false             |
-| kana-name          | text                | null: false             |
-| birthday           | string              | null: false             |
+Things you may want to cover:
 
-### Association
+* Ruby version
 
-* has_many :items
-* has_many :purchase
+* System dependencies
 
-## items table
+* Configuration
 
-| Column                              | Type       | Options           |
-|-------------------------------------|------------|-------------------|
-| items                               | string     | null: false       |
-| category                            | text       | null: false       |
-| price                               | string     | null: false       |
-| user                                | references | foreign_key: true |
+* Database creation
 
-### Association
+* Database initialization
 
-- belongs_to :user
-- has_many :purchase
+* How to run the test suite
 
-## purchase table
+* Services (job queues, cache servers, search engines, etc.)
 
-| Column           | Type       | Options           |
-|-------------     |------------|-------------------|
-| credit-number    | string     | null: false       |
-| expiration-date | string     | null: false       |
-| security-code    | string     | null: false       |
-| postal-code      | string     | null: false       |
-| prefectures      | text       | null: false       |
-| municipality     | text       | null: false       |
-| address          | text       | null: false       |
-| building         | text       | null: false       |
-| phone-number     | text       | null: false       |
-| items            | references | foreign_key: true |
-| user             | references | foreign_key: true |
+* Deployment instructions
 
-### Association
-
-- belongs_to :items
-- belongs_to :user
+* ...
