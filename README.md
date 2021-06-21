@@ -50,3 +50,23 @@
 
 - belongs_to :items
 - belongs_to :user
+
+## sell table
+
+| Column           | Type       | Options           |
+|-------------     |------------|-------------------|
+| picture          | string     | null: false       |
+| product-name     | text       | null: false       |
+| product-details  | string     | null: false       |
+| category         | string     | null: false       |
+| product-status   | text       | null: false       |
+| delivery-charge  | text       | null: false       |
+| ship-from        | text       | null: false       |
+| price            | text       | null: false       |
+| purchase         | references | foreign_key: true |
+| items            | references | foreign_key: true |
+| user             | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
