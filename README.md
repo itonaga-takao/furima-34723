@@ -4,8 +4,8 @@
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| nickname           | text                | null: false             |
-| email              | string              | foreign_key: true       |
+| nickname           | string              | null: false             |
+| email              | string              | null: false, unique: true|
 | encrypted_password | string              | null: false             |
 | real_first_name    | text                | null: false             |
 | real_last_name     | text                | null: false             |
@@ -16,58 +16,54 @@
 ### Association
 
 * has_many :items
-* has_many :purchases
+* has_many :addresses
 
 ## items table
 
-| Column           | Type       | Options           |
-|-------------     |------------|-------------------|
-| product_name     | string     | null: false       |
-| product_details  | text       | null: false       |
-| category         | string     | null: false       |
-| product_status   | text       | null: false       |
-| delivery_charge  | text       | null: false       |
-| prefecture       | text       | null: false       |
-| price            | integer    | null: false       |
-| purchase         | references | foreign_key: true |
-| user             | references | foreign_key: true |
-| comment          | text       | null: true       |
+| Column              | Type       | Options           |
+|---------------------|------------|-------------------|
+| name                | string     | null: false       |
+| details             | text       | null: false       |
+| category_id         | integer    | null: false       |
+| status_id           | integer    | null: false       |
+| delivery_charge_id  | integer    | null: false       |
+| days_to_ship_id     | integer    | null: false       |
+| prefecture_id       | integer    | null: false       |
+| price_id            | integer    | null: false       |
+| purchase            | references |                   |
+| user                | references | foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :address
 
-## purchases table
+## addresses table
 
 | Column           | Type       | Options           |
 |-------------     |------------|-------------------|
 | postal_code      | string     | null: false       |
-| prefecture       | string     | null: false       |
+| prefecture_id    | integer    | null: false       |
 | municipality     | string     | null: false       |
 | address          | string     | null: false       |
-| building         | string     | null: true        |
+| building         | string     |                   |
 | phone_number     | text       | null: false       |
-| item             | references | foreign_key: true |
-| user             | references | foreign_key: true |
+
 
 ### Association
 
-- belongs_to :item
-- belongs_to :user
+- has_one :item
 
 ## buyers table
 
 | Column           | Type       | Options           |
 |-------------     |------------|-------------------|
-| buyer_id         | string     | null: false       |
-| bought           | string     | null: false       |
-| purchase         | references | foreign_key: true |
-| items            | references | foreign_key: true |
+| item             | references | foreign_key: true |
 | user             | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :address
+- has_many :items
