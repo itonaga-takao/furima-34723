@@ -7,10 +7,10 @@
 | nickname           | string              | null: false             |
 | email              | string              | null: false, unique: true|
 | encrypted_password | string              | null: false             |
-| real_first_name    | text                | null: false             |
-| real_last_name     | text                | null: false             |
-| kana_first_name    | text                | null: false             |
-| kana_last_name     | text                | null: false             |
+| real_first_name    | string              | null: false             |
+| real_last_name     | string              | null: false             |
+| kana_first_name    | string              | null: false             |
+| kana_last_name     | string              | null: false             |
 | birthday           | date                | null: false             |
 
 ### Association
@@ -29,8 +29,7 @@
 | delivery_charge_id  | integer    | null: false       |
 | days_to_ship_id     | integer    | null: false       |
 | prefecture_id       | integer    | null: false       |
-| price_id            | integer    | null: false       |
-| purchase            | references |                   |
+| price               | integer    | null: false       |
 | user                | references | foreign_key: true |
 
 
@@ -48,12 +47,12 @@
 | municipality     | string     | null: false       |
 | address          | string     | null: false       |
 | building         | string     |                   |
-| phone_number     | text       | null: false       |
+| phone_number     | string     | null: false       |
 
 
 ### Association
 
-- has_one :item
+- has_one :buyer
 
 ## buyers table
 
@@ -66,4 +65,4 @@
 
 - belongs_to :user
 - has_one :address
-- has_many :items
+- belongs_to :items
