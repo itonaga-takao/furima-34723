@@ -36,7 +36,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :address
+- has_one :buyer
 
 ## addresses table
 
@@ -48,11 +48,11 @@
 | address          | string     | null: false       |
 | building         | string     |                   |
 | phone_number     | string     | null: false       |
-
+| buyer            | references | foreign_key: true |
 
 ### Association
 
-- has_one :buyer
+- belongs_to :buyer
 
 ## buyers table
 
