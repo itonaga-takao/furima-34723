@@ -5,7 +5,3 @@ const channels = require.context('.', true, /_channel\.js$/)
 channels.keys().forEach(channels)
 
 
-if (XHR.status != 200) {
-  alert(`Error ${XHR.status}: ${XHR.statusText}`);
-  return null;
-};
