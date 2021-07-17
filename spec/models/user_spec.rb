@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
     end
 
     context '新規登録がうまくいくとき' do
+
       it 'nameとemail、passwordとpassword_confirmationが存在すれば登録できること' do
         expect(@user).to be_valid
       end
@@ -54,6 +55,15 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       
+      it 'passwordは半角英数字混合での入力が必須であること' do
+        @user.password = '12345'
+        @user.password_confirmation = '12345'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+
+      end
+
+
       it '重複したemailが存在する場合登録できないこと' do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
