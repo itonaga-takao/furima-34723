@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
 
     context '新規登録がうまくいくとき' do
 
-      it 'nameとemail、passwordとpassword_confirmationが存在すれば登録できること' do
+      it 'nameとemail、passwordとpassword_confirmationの内容に問題ない場合登録できること' do
         expect(@user).to be_valid
       end
 
@@ -117,28 +117,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
 
-      it 'passwordが全角のみだと登録できない' do
-        @user.password = 'あいうえお'
-        @user.password_confirmation = 'あいうえお'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
-
-      end
-
-      it 'passwordが半角数字のみだと登録できない' do
-        @user.password = '12345'
-        @user.password_confirmation = '12345'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
-
-      end
-
-      it 'passwordが半角英字のみだと登録できない' do
-        @user.password = 'abcde'
-        @user.password_confirmation = 'abcde'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
-      end
+      
 
       it 'emailは@を含まないと登録できないこと' do
         @user.email = 'aaaa'
@@ -159,13 +138,13 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Real last name is invalid. Input full-width katakana characters.")
       end
 
-      it 'kana_first_nameが全角カタカナでは登録できないこと' do
+      it 'kana_first_nameが全角カタカナ以外では登録できないこと' do
         @user.kana_first_name = 'a1あ阿'
         @user.valid?
         expect(@user.errors.full_messages).to include("Kana first name is invalid. Input full-width katakana characters.")
       end
 
-      it 'kana_last_nameが全角カタカナでは登録できないこと' do
+      it 'kana_last_nameが全角カタカ以外ナでは登録できないこと' do
         @user.kana_last_name = 'a1あ阿'
         @user.valid?
         expect(@user.errors.full_messages).to include("Kana last name is invalid. Input full-width katakana characters.")
