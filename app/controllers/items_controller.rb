@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
 
 
   def index
-    
+    @items = Item.all
+
   end
 
   def new
@@ -19,6 +20,9 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
+
+
 
   end
 
