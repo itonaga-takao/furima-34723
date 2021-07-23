@@ -96,6 +96,37 @@ end
       expect(@item.errors.full_messages).to include('User must exist')
     end
 
+    it 'category_idが未選択では出品できないこと' do
+      @item.category_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category can't be blank")
+    end
+
+    it 'status_idが未選択では出品できないこと' do
+      @item.status_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Status can't be blank")
+    end
+
+    it 'delivery_charge_idが未選択では出品できないこと' do
+      @item.delivery_charge_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
+    end
+
+    it 'days_to_ship_idが未選択では出品できないこと' do
+      @item.days_to_ship_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Days to ship can't be blank")
+    end
+
+    it 'prefecture_idが未選択では出品できないこと' do
+      @item.prefecture_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+    end
+
+
     end
 
 
