@@ -73,13 +73,13 @@ end
     end
 
     it 'priceが¥300以下では出品できないこと' do
-      @item.price = '299'
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
 
     it 'priceが¥9,999,999以上では出品できないこと' do
-      @item.price = '100000000'
+      @item.price = 100000000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
@@ -97,31 +97,31 @@ end
     end
 
     it 'category_idが未選択では出品できないこと' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
 
     it 'status_idが未選択では出品できないこと' do
-      @item.status_id = '1'
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
     end
 
     it 'delivery_charge_idが未選択では出品できないこと' do
-      @item.delivery_charge_id = '1'
+      @item.delivery_charge_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
     end
 
     it 'days_to_ship_idが未選択では出品できないこと' do
-      @item.days_to_ship_id = '1'
+      @item.days_to_ship_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Days to ship can't be blank")
     end
 
     it 'prefecture_idが未選択では出品できないこと' do
-      @item.prefecture_id = '1'
+      @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture can't be blank")
     end
