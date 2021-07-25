@@ -2,7 +2,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create]
-  before_action :contributor_confirmation, only: [:edit, :update]
+  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
 
   def index
@@ -27,8 +27,6 @@ class ItemsController < ApplicationController
     end
 
     def edit
-
-
     end
 
     def update
@@ -39,7 +37,12 @@ class ItemsController < ApplicationController
       end
     end
 
+    def destroy
+      @item.destroy
+      redirect_to items_path
 
+    end
+    
 
   end
 
