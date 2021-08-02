@@ -31,20 +31,6 @@ describe '#create' do
   expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
   end
 
-  it '有効期限が空では購入できないこと' do
-    @buyer_address.token = ''
-    @buyer_address.valid?
-
-    expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
-  
-end
-
-  it 'セキュリティコードが空では購入できないこと' do
-    @buyer_address.token = ''
-    @buyer_address.valid?
-    expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
-  end
-
   it '郵便番号が空では購入できないこと' do
     @buyer_address.postal_code = ''
     @buyer_address.valid?
@@ -76,7 +62,7 @@ end
   end
 
   it '郵便番号の保存にはハイフンが必要であること' do
-    @buyer_address.postal_code = 1000000
+    @buyer_address.postal_code = '1000000'
     @buyer_address.valid?
     expect(@buyer_address.errors.full_messages).to include("Postal code is invalid")
   end
