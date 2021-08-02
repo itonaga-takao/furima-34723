@@ -117,7 +117,17 @@ end
     expect(@buyer_address.errors.full_messages).to include("Phone number is invalid")
   end
 
+  it 'user.idが空では購入できないこと' do
+    @buyer_address.user_id = ''
+    @buyer_address.valid?
+    expect(@buyer_address.errors.full_messages).to include("User can't be blank")
+  end
 
+  it 'item.idが空では購入できないこと' do
+    @buyer_address.item_id = ''
+    @buyer_address.valid?
+    expect(@buyer_address.errors.full_messages).to include("Item can't be blank")
+  end
 
 
   end
