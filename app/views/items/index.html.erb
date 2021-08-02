@@ -135,12 +135,11 @@
         <%= link_to item_path(items.id) do %>
         <div class='item-img-content'>
           <%= image_tag items.image , class: "item-img" %>
-
-          <%# if （ここに条件文）購入機能実装後編集予定 %>
+          <% if items.buyer.present? %> 
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# end %>
+          <% end %>
 
         </div>
         <div class='item-info'>
