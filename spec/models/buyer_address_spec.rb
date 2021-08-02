@@ -15,6 +15,12 @@ describe '#create' do
     it 'カード情報~電話番号までの内容に問題ない場合登録できること' do
       expect(@buyer_address).to be_valid
     end
+
+    it '建物名が空でも登録できること' do
+      @buyer_address.building = ''
+      expect(@buyer_address).to be_valid
+    end
+
   end
 
   context '商品購入がうまくいかないとき' do
@@ -86,6 +92,32 @@ end
     @buyer_address.valid?
     expect(@buyer_address.errors.full_messages).to include("Prefecture can't be blank")
   end
+
+  it '電話番号は12桁以上では登録できないこと' do
+    @buyer_address.phone_number = '111111111111'
+    @buyer_address.valid?
+    expect(@buyer_address.errors.full_messages).to include("Phone number is invalid")
+  end
+
+  it '電話番号は数字のみでないと登録できないこと（英数字混合）' do
+    @buyer_address.phone_number = '1111111aaaa'
+    @buyer_address.valid?
+    expect(@buyer_address.errors.full_messages).to include("Phone number is invalid")
+  end
+
+  it '電話番号は数字のみでないと登録できないこと（（ハイフンあり）' do
+    @buyer_address.phone_number = '0-111-1111'
+    @buyer_address.valid?
+    expect(@buyer_address.errors.full_messages).to include("Phone number is invalid")
+  end
+
+  it '電話番号は全角文字では登録できないこと' do
+    @buyer_address.phone_number = '１１１１１１１１１１１'
+    @buyer_address.valid?
+    expect(@buyer_address.errors.full_messages).to include("Phone number is invalid")
+  end
+
+
 
 
   end
